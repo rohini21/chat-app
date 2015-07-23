@@ -1,0 +1,46 @@
+{
+	"name":"ChatApp",
+	 "dependencies": {
+	 	"express":"*",
+	 	"mongoose":"*",
+	 	"socket.io":"*",
+	 	"react": "0.12.2",
+		"react-router": "0.11.6",
+    "reflux": "0.2.7",
+    "jquery": "*"
+  },
+  "browserify": {
+    "transform": [
+      "cssify",
+      "reactify"
+    ]
+  },
+  "devDependencies": {
+  	"vinyl": "*",
+    "browserify": "*",
+    "cssify": "*",
+    "gulp": "*",
+    "reactify": "*",
+    "watchify": "*",
+    "gulp-add-src": "^0.2.0",
+    "gulp-buffer": "0.0.2",
+    "gulp-clean": "^0.3.1",
+    "gulp-cog": "^0.1.2",
+    "gulp-concat": "^2.4.2",
+    "gulp-json-editor": "*",
+    "gulp-load-plugins": "^0.7.1",
+    "gulp-replace": "*",
+    "gulp-rimraf": "^0.1.1",
+    "gulp-run": "^1.6.4",
+    "gulp-shell": "^0.2.10",
+    "gulp-uglify": "^1.0.1",
+    "gulp-if": "*",
+    "run-sequence":"*",
+    "gulp-zip": "^2.0.2",
+    "rimraf": "^2.2.8",
+    "semver": "^4.1.0",
+    "react-localstorage": "0.2.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
+  }
+}
