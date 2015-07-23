@@ -18,9 +18,9 @@ io.on('connection', function(socket){
 	io.emit('loggedin_user', usernames);
 
 	socket.on('chat_mesg', function(userObj){
-		var id = users[userObj.username];
+		var id = users[userObj.receiver];
 		console.log("id",id);
-		io.emit('chat_mesg', userObj);
+		io.to(id).emit('chat_mesg', userObj);
 	});
 	
 	socket.on('login', function(username){

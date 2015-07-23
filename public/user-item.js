@@ -14,7 +14,6 @@ module.exports.View = React.createClass({
     var self   = this;
     var socket = io();
     socket.on('chat_mesg',function(user){
-      console.log("user ",user);
       $('#chats').append($('<li>').text(user.username + ":  " + user.message));
     }); 
   },
@@ -23,11 +22,13 @@ module.exports.View = React.createClass({
     var self   = this;
     var socket = io();
     var text   = this.refs.message.getDOMNode().value.trim();
-
     if((e.keyCode === 13 || e.type === 'click') && text){
       socket.emit('chat_mesg',{'username':self.getParams().username,
+        'receiver':self.props.username,
         'message': text
       });
+      $('#chats').append($('<li>').text(self.getParams().username + ":  " + text));
+      this.refs.message.getDOMNode().value = '';
     }
   },
   startChat: function(){

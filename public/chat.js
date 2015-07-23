@@ -45,11 +45,13 @@ module.exports = React.createClass({
     return(
       <div>
         <div className="user-list">
-          {
-            users.map(function(user){
-              return <UserItem username={user}/>
-            })
-          }
+          <ul>
+            {
+              users.map(function(user){
+                return <UserItem username={user}/>
+              })
+            }
+          </ul>
         </div>
         <div className="logout-btn">
           <button onClick={self.onLogout}>logout</button>
