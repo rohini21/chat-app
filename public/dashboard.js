@@ -5,12 +5,14 @@ var Reflux      = require('reflux');
 
 var UserItem    = require('./user-item').View;
 var UserState   = require('./user-state'); 
+var ChatBox     = require('./chat-box').View;
 
 module.exports = React.createClass({
   mixins: [Router.Navigation, Router.State],
   getInitialState: function(){
     return {
-      userlist : []
+      userlist : [], 
+      receiver : null
     }
   },
   componentDidMount: function(){
@@ -37,24 +39,42 @@ module.exports = React.createClass({
     UserState.Actions.logout(self.getParams().username);
     this.transitionTo('login');
   },
+  openChatBox: function(sender,receiver){
+    console.log("receiver ",receiver);
+      this.setState({
+        receiver: receiver,
+        messages: []
+      });
+  },
+  sendMesg: function(){
+    var text   = this.refs.message.getDOMNode().value.trim();
+  },
   render:function(){
-    var self  = this;
-    var users = this.state.userlist;
+    var self     = this;
+    var users    = this.state.userlist;
+    var sender   = self.getParams().username;
+    var receiver = this.state.receiver;
 
-    console.log(users);
+    var ShowChatBox  = <div />
+    if(receiver){
+      ShowChatBox = <ChatBox sender={sender} receiver={receiver} />
+    }
     return(
-      <div>
-        <div className="user-list">
-          <ul>
-            {
-              users.map(function(user){
-                return <UserItem username={user}/>
-              })
-            }
-          </ul>
+      <div className="container">
+        <div className="user-list col-md-4" >
+          <div className="logout-btn">
+            <button onClick={self.onLogout}>logout</button>
+          </div>
+            <ul>
+              {
+                users.map(function(user){
+                  return <UserItem receiver={user} sender={sender} openChatBox={self.openChatBox} />
+                })
+              }
+            </ul>
         </div>
-        <div className="logout-btn">
-          <button onClick={self.onLogout}>logout</button>
+        <div className="user-chat col-md-8">
+          {ShowChatBox}
         </div>
       </div>
     );

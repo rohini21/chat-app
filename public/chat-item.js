@@ -5,16 +5,11 @@ var Reflux      = require('reflux');
 
 module.exports.View = React.createClass({
   mixins: [Router.Navigation, Router.State],
-  openChatBox: function(){
-    this.props.openChatBox(this.props.sender,this.props.receiver);
-  },
   render:function(){
     var self     = this;
-    var username = this.props.receiver;
+    var message  = this.props.message;
     return(
-      <li onClick={self.openChatBox}>
-        {username}
-      </li>
+      <li>{message.username}: {message.text}</li>
     );
   }
 });

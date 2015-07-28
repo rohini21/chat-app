@@ -29,7 +29,7 @@ module.exports = React.createClass({
     if(e.keyCode === 13 && username){
       if(this.state.userlist.indexOf(username)<0){
         UserState.Actions.login(username);
-        this.transitionTo('chat',{username: username});
+        this.transitionTo('dashboard',{username: username});
       }else{
         alert("name already used");
       }
