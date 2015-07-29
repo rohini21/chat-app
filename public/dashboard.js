@@ -18,7 +18,7 @@ module.exports = React.createClass({
   componentDidMount: function(){
     var self   = this;
     var socket = io();
-    var users = self.state.userlist;
+    var users  = self.state.userlist;
     console.log("initial userlist",users);
     socket.on('chat_mesg',function(msg){
       $('#chats').append($('<li>').text(msg.username + ": " + msg.message));
@@ -65,7 +65,7 @@ module.exports = React.createClass({
           <div className="logout-btn">
             <button onClick={self.onLogout}>logout</button>
           </div>
-            <ul>
+            <ul className="ul-ul">
               {
                 users.map(function(user){
                   return <UserItem receiver={user} sender={sender} openChatBox={self.openChatBox} />
